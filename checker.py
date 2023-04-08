@@ -18,7 +18,6 @@ loader = PyPDFLoader(pdf_path)
 tokens_per_page = 500
 text_splitter = TokenTextSplitter(chunk_size=tokens_per_page, chunk_overlap=0)
 pages = loader.load_and_split(text_splitter)
-print(len(pages))
 
 ##
 embeddings = OpenAIEmbeddings()
@@ -33,8 +32,3 @@ query = "Which sentence in the context best supports the following claim: " + cl
 result = pdf_qa({"question": query, "chat_history": ""})
 print("Answer:")
 print(result["answer"])
-
-##
-for doc in result["source_documents"]:
-    print(doc.page_content)
-    print()
